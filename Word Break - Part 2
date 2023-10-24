@@ -1,0 +1,32 @@
+Given a string s and a dictionary of words dict of length n, add spaces in s to construct a sentence where each word is a valid dictionary word. Each dictionary word can be used more than once. Return all such possible sentences.
+
+Follow examples for better understanding.
+
+Example 1:
+
+Input: s = "catsanddog", n = 5 
+dict = {"cats", "cat", "and", "sand", "dog"}
+Output: (cats and dog)(cat sand dog)
+Explanation: All the words in the given 
+sentences are present in the dictionary.
+
+def wordBreak(s, wordDict):
+    def backtrack(start, path):
+        if start == len(s):
+            sentences.append(" ".join(path))
+            return
+
+        for end in range(start + 1, len(s) + 1):
+            word = s[start:end]
+            if word in wordDict:
+                backtrack(end, path + [word])
+
+    sentences = []
+    backtrack(0, [])
+    return sentences
+
+# Example usage:
+s = "catsanddog"
+wordDict = {"cats", "cat", "and", "sand", "dog"}
+result = wordBreak(s, wordDict)
+print(result)
